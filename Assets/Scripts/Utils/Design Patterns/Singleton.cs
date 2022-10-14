@@ -2,17 +2,17 @@ using UnityEngine;
 namespace Scripts.Utils.DesignPatterns { 
     public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
     {
-        private Singleton<T> Instance;
+        public static T Instance;
         private void Awake()
         {
-            if(Instance != null)
+            if(Instance == null)
             {
-                Instance = this;
+                Instance = GetComponent<T>();
                 DontDestroyOnLoad(Instance);
             }
             else
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
