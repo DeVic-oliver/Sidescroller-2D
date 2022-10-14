@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Scripts.Utils.DesignPatterns { 
+namespace Scripts.Core.DesignPatterns { 
     public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
     {
         public static T Instance;

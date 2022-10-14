@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Scripts.Utils.DesignPatterns;
+using Scripts.Core.DesignPatterns;
 public class GameManager : Singleton<GameManager>
 {
 
