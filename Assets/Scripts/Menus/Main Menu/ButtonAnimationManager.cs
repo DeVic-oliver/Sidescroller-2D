@@ -2,27 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 public class ButtonAnimationManager : MonoBehaviour
 {
-    [Header("Animation Parameters")]
-    [SerializeField] private float duration;
-    [SerializeField] private Ease animationEase;
-    [SerializeField] private float buttonScale;
-    // Start is called before the first frame update
-    void Start()
+    #region ANIMATION SETUP
+    [Header("Buttons Animation Setup")]
+    [Space(30)]
+    [Header("Button Data ScriptableObject")]
+    [SerializeField] private ButtonsData ButtonsData;
+    [SerializeField] private float delayThreshold;
+    [SerializeField] private List<Button> buttonsList;
+    #endregion
+    private float delayThresholdFixedValue;
+    private void Awake()
     {
-        transform.localScale = Vector2.zero;
-        GrowButtonsInScale();
+        delayThresholdFixedValue = delayThreshold;
+        SetButtonsScaleToZero();
+    }
+    private void SetButtonsScaleToZero()
+    {
+        foreach (Button button in buttonsList)
+        {
+            button.transform.localScale = Vector3.zero;
+        }
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        FireButtonsAnimation();
+    }
+
     void Update()
     {
         
     }
 
-    private void GrowButtonsInScale()
+    private void FireButtonsAnimation()
     {
-        transform.DOScale(buttonScale, duration).SetDelay(1.2f).SetEase(animationEase);
+        foreach (Button button in buttonsList)
+        {
+            button.transform.DOScale(ButtonsData.ButtonScaleSize, ButtonsData.Duration).SetDelay(ButtonsData.AnimationDelay * delayThreshold).SetEase(ButtonsData.AnimationEase);
+            IncreaseAnimationDelay();
+        }
+    }
+    private void IncreaseAnimationDelay()
+    {
+        delayThreshold += delayThresholdFixedValue;
     }
 }
