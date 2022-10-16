@@ -1414,6 +1414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1984454432}
   - component: {fileID: 1984454433}
+  - component: {fileID: 1984454434}
   m_Layer: 5
   m_Name: Menu Buttons
   m_TagString: Untagged
@@ -1469,6 +1470,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1984454434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984454431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d59723364d6c6a45907134114f5ac9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonsData: {fileID: 11400000, guid: 37b7d280a98d9f04f91cdf5eea884919, type: 2}
+  delayThreshold: 0.25
+  buttonsList:
+  - {fileID: 1367013764}
+  - {fileID: 2098559379}
+  - {fileID: 1708721431}
 --- !u!1 &2098559377
 GameObject:
   m_ObjectHideFlags: 0
