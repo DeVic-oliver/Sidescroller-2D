@@ -45,11 +45,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void MovePlayerToLeft() 
     {
-        _rigidbody.MovePosition(_rigidbody.position + Vector2.left * moveSpeed );
+        _rigidbody.velocity = new Vector2(-moveSpeed, _rigidbody.velocity.y);
     }
     private void MovePlayerToRight()
     {
-        _rigidbody.MovePosition(_rigidbody.position + Vector2.right * moveSpeed);
+        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
     }
     private void CheckRunInput()
     {
