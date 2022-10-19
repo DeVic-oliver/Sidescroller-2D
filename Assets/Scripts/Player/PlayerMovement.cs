@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         SetDefaultMoveSpeed();
     }
 
@@ -20,6 +21,19 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
+       
+
+        float playerVelocity = Mathf.RoundToInt(_rigidbody.velocity.x);
+
+        Debug.Log(playerVelocity);
+        if (playerVelocity != 0)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            _animator.SetBool("IsMoving", false);
+        }
     }
     private void CheckJumpInput()
     {
@@ -48,9 +62,11 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.A))
         {
             MovePlayerToLeft();
+            transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }else if (Input.GetKey(KeyCode.D))
         {
             MovePlayerToRight();
+            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
 
         CheckRunInput();
