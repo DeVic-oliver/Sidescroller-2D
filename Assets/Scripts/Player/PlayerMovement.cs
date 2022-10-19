@@ -18,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+        CheckJumpInput();
+    private void CheckJumpInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
+        }
+    }
     }
     private void FixedUpdate()
     {
