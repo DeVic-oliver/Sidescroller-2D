@@ -64,10 +64,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void SetRunSpeed()
     {
-        moveSpeed = PlayerData.RunSpeed * Time.deltaTime;
+        moveSpeed = PlayerData.RunSpeed;
     }
     private void SetDefaultMoveSpeed()
     {
-        moveSpeed = PlayerData.MoveSpeed * Time.deltaTime;
+        moveSpeed = PlayerData.MoveSpeed;
     }
+   
 }
