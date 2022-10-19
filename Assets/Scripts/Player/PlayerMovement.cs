@@ -17,8 +17,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         CheckJumpInput();
+        ReducePlayerVelocityByFrame();
+    }
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -26,6 +27,16 @@ public class PlayerMovement : MonoBehaviour
             _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
         }
     }
+    private void ReducePlayerVelocityByFrame()
+    {
+        if(_rigidbody.velocity.x > 0)
+        {
+            _rigidbody.velocity -= new Vector2(.1f, 0);
+        }
+        else if(_rigidbody.velocity.x < 0)
+        {
+            _rigidbody.velocity -= new Vector2(-.1f, 0);
+        }
     }
     private void FixedUpdate()
     {
