@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerData PlayerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
+    private Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
