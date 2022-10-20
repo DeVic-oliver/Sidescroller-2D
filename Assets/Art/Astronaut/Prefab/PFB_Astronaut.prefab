@@ -883,8 +883,8 @@ GameObject:
   - component: {fileID: 388782694}
   - component: {fileID: 4067993012454380442}
   - component: {fileID: 6573861724512529997}
-  - component: {fileID: 7640122808269306567}
   - component: {fileID: 5731940049172953559}
+  - component: {fileID: 7640122808269306567}
   - component: {fileID: 5119609290659102316}
   - component: {fileID: 2068924161}
   m_Layer: 0
@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2642cd42f2016498081dffb1cb8114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 0}
+  _playerData: {fileID: 11400000, guid: 9722a5551866da14eae3e205c4f72752, type: 2}
 --- !u!114 &6573861724512529997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +965,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerData: {fileID: 11400000, guid: 9722a5551866da14eae3e205c4f72752, type: 2}
+--- !u!114 &5731940049172953559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835229685202505509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6efa1ad10107f4881859c977c5b480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
 --- !u!114 &7640122808269306567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -978,18 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThePlayerStatus: {fileID: 0}
---- !u!114 &5731940049172953559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8835229685202505509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6efa1ad10107f4881859c977c5b480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  AnimationManager: {fileID: 0}
 --- !u!50 &5119609290659102316
 Rigidbody2D:
   serializedVersion: 4
@@ -1024,7 +1026,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2.56}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1035,7 +1037,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.25, y: 5.19}
   m_EdgeRadius: 0
 --- !u!1001 &2987335437580250577
 PrefabInstance:
