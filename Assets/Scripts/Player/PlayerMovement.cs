@@ -8,7 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
     private PlayerAnimationManager _animationManager;
-    private bool isGrounded;
+    #region Player JumpStates variables
+    private bool isGrounded = false;
+    private bool hasJumped = false;
+    private bool isFalling = false;
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -20,37 +24,68 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        WatchRunAnimation();
+        WatchJumpAnimation();
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
     }
     private void LateUpdate()
     {
-        WatchRunAnimation();
-        //WatchJumpAnimation();
     }
-    //private void WatchJumpAnimation()
-    //{
-    //    if (_rigidbody.velocity.y > 0)
-    //    {
-    //        _animationManager.TriggerJumpAnimation();
-    //        _animationManager.EnableAnimation("IsGrounded", false);
-    //    }
-    //    else if (_rigidbody.velocity.y < 0)
-    //    {
-    //        _animationManager.TriggerFallAnimation();
-    //        _animationManager.EnableAnimation("IsGrounded", false);
-    //    }
-    //    else if (_rigidbody.velocity.y == 0)
-    //    {
-    //        _animationManager.TriggerLandAnimation();
-    //        _animationManager.EnableAnimation("IsGrounded", true);
-    //    }
-    //}
+    private void WatchJumpAnimation()
+    {
+        if (_rigidbody.velocity.y > 0 && isGrounded)
+        {
+            SetIsGroundedToFalse();
+            _animationManager.TriggerJumpAnimation();
+            _animationManager.EnableAnimation("IsGrounded", false);
+        }
+        else if (_rigidbody.velocity.y < 0 && !isFalling)
+        {
+            SetIsFallingToTrue();
+            SetIsGroundedToFalse();
+            _animationManager.TriggerFallAnimation();
+            _animationManager.EnableAnimation("IsGrounded", false);
+        }
+        else if (_rigidbody.velocity.y == 0 && !isGrounded)
+        {
+            SetIsGroundedToTrue();
+            SetIsFallingToFalse();
+            SetJumpedToFalse();
+            _animationManager.TriggerLandAnimation();
+            _animationManager.EnableAnimation("IsGrounded", true);
+        }
+    }
+    private void SetJumpedToFalse()
+    {
+        hasJumped = false;
+    }
+    private void SetJumpedToTrue()
+    {
+        hasJumped = true;
+    }
+    private void SetIsFallingToFalse()
+    {
+        isFalling = false;
+    }
+    private void SetIsFallingToTrue()
+    {
+        isFalling = true;
+    }
+    private void SetIsGroundedToFalse()
+    {
+        isGrounded = false;
+    }
+    private void SetIsGroundedToTrue()
+    {
+        isGrounded = true;
+    }
     private void CheckJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
         {
             _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
+            SetJumpedToTrue();
         }
     }
     private void ReducePlayerVelocityByFrame()
