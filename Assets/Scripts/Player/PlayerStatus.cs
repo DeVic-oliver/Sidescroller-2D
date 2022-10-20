@@ -7,13 +7,17 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     private bool isAlive;
     [SerializeField] private PlayerData _playerData;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Debug.Log( _playerData.IsAlive );
+    }
     void Start()
     {
         InitPlayerData();
     }
     private void InitPlayerData()
     {
-        isAlive = _playerData;
+        isAlive = _playerData.IsAlive;
     }
 
     // Update is called once per frame
