@@ -881,8 +881,12 @@ GameObject:
   - component: {fileID: 8007466312498025151}
   - component: {fileID: 6413013834153556191}
   - component: {fileID: 388782694}
+  - component: {fileID: 4067993012454380442}
   - component: {fileID: 6573861724512529997}
+  - component: {fileID: 7640122808269306567}
+  - component: {fileID: 5731940049172953559}
   - component: {fileID: 5119609290659102316}
+  - component: {fileID: 2068924161}
   m_Layer: 0
   m_Name: PFB_Astronaut
   m_TagString: Untagged
@@ -935,6 +939,19 @@ SortingGroup:
   m_SortingLayerID: -168878705
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &4067993012454380442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835229685202505509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2642cd42f2016498081dffb1cb8114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerData: {fileID: 0}
 --- !u!114 &6573861724512529997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,7 +964,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22428c5cea78728438904fbf9e476493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 0}
+  PlayerData: {fileID: 11400000, guid: 9722a5551866da14eae3e205c4f72752, type: 2}
+--- !u!114 &7640122808269306567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835229685202505509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac802a3f9552f64a98920d03cfa396f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThePlayerStatus: {fileID: 0}
+--- !u!114 &5731940049172953559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835229685202505509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6efa1ad10107f4881859c977c5b480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &5119609290659102316
 Rigidbody2D:
   serializedVersion: 4
@@ -969,6 +1011,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &2068924161
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8835229685202505509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 71f5246a10e8d7144ad12e3457d51d0f, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &2987335437580250577
 PrefabInstance:
   m_ObjectHideFlags: 0

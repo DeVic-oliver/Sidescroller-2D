@@ -7,12 +7,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerData PlayerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
-    private Animator _animator;
+    private PlayerAnimationManager _animationManager;
+    private bool isGrounded;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _animationManager = GetComponent<PlayerAnimationManager>();
         SetDefaultMoveSpeed();
     }
 
@@ -21,20 +22,30 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
-       
-
-        float playerVelocity = Mathf.RoundToInt(_rigidbody.velocity.x);
-
-        Debug.Log(playerVelocity);
-        if (playerVelocity != 0)
-        {
-            _animator.SetBool("IsMoving", true);
-        }
-        else
-        {
-            _animator.SetBool("IsMoving", false);
-        }
     }
+    private void LateUpdate()
+    {
+        WatchRunAnimation();
+        //WatchJumpAnimation();
+    }
+    //private void WatchJumpAnimation()
+    //{
+    //    if (_rigidbody.velocity.y > 0)
+    //    {
+    //        _animationManager.TriggerJumpAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", false);
+    //    }
+    //    else if (_rigidbody.velocity.y < 0)
+    //    {
+    //        _animationManager.TriggerFallAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", false);
+    //    }
+    //    else if (_rigidbody.velocity.y == 0)
+    //    {
+    //        _animationManager.TriggerLandAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", true);
+    //    }
+    //}
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -51,6 +62,19 @@ public class PlayerMovement : MonoBehaviour
         else if(_rigidbody.velocity.x < 0)
         {
             _rigidbody.velocity -= new Vector2(-.1f, 0);
+        }
+    }
+    private void WatchRunAnimation()
+    {
+        float playerVelocity = Mathf.RoundToInt(_rigidbody.velocity.x);
+
+        if (playerVelocity != 0)
+        {
+            _animationManager.EnableRunAnimation();
+        }
+        else
+        {
+            _animationManager.DisableRunAnimation();
         }
     }
     private void FixedUpdate()

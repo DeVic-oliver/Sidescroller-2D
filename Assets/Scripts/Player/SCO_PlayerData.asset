@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f23c509ee153df43b7416db2ea2ca39, type: 3}
   m_Name: SCO_PlayerData
   m_EditorClassIdentifier: 
+  IsAlive: 1
   MoveSpeed: 10
   JumpForce: 10
   RunSpeed: 15
