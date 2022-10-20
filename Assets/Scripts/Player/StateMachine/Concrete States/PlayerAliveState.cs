@@ -5,14 +5,7 @@ public class PlayerAliveState : PlayerStateBase, IPlayerState
     public void OnStateEnter(PlayerStateMachine stateMachineManager)
     {
         _stateMachine = stateMachineManager;
-        CheckIfPlayerIsDead();
-    }
-    private void CheckIfPlayerIsDead()
-    {
-        if (!_stateMachine.ThePlayerStatus.GetPlayerAliveStatus())
-        {
-            _stateMachine.ThePlayerStatus.ResurrectPlayer();
-        }
+        _stateMachine.ThePlayerStatus.ResurrectPlayer();
         Debug.Log( "The player is alive" );
     }
 
