@@ -9,17 +9,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     private void Awake()
     {
-        Debug.Log( _playerData.IsAlive );
-    }
-    void Start()
-    {
         InitPlayerData();
     }
     private void InitPlayerData()
     {
         isAlive = _playerData.IsAlive;
     }
-
+    void Start()
+    {
+    }
     // Update is called once per frame
     void Update()
     {
