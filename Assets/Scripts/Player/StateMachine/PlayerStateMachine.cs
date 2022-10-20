@@ -6,6 +6,7 @@ public class PlayerStateMachine : MonoBehaviour
 {
     private IPlayerState currentState;
     public PlayerStatus ThePlayerStatus;
+    public PlayerAnimationManager AnimationManager;
     #region CONCRETE STATES
     public IPlayerState AliveState = new PlayerAliveState();
     public IPlayerState DeadState = new PlayerDeadState();

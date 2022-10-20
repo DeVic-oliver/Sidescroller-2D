@@ -24,7 +24,7 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         _animator.SetBool("IsAlive", true);
     }
-    public void DisableDeathAnimation()
+    public void EnableDeathAnimation()
     {
         _animator.SetBool("IsAlive", false);
     }

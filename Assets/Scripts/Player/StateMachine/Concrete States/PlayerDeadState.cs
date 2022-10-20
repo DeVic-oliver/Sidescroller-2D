@@ -8,7 +8,8 @@ public class PlayerDeadState : PlayerStateBase, IPlayerState
     {
         _stateMachine = stateMachineManager;
         stateMachineManager.ThePlayerStatus.KillPlayer();
-        Debug.Log("The player is Dead");
+        _stateMachine.AnimationManager.EnableDeathAnimation();
+        _stateMachine.GetComponent<PlayerMovement>().enabled = false;
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)
@@ -19,7 +20,7 @@ public class PlayerDeadState : PlayerStateBase, IPlayerState
     protected override void WatchPlayerStatus()
     {
         bool isPlayerAlive = _stateMachine.ThePlayerStatus.GetPlayerAliveStatus();
-        if (isPlayerAlive)
+        if (isPlayerAlive || Input.anyKeyDown)
         {
             _stateMachine.SwitchState(_stateMachine.AliveState);
         }
