@@ -4328,17 +4328,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2101683612 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5731940049172953559, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-  m_PrefabInstance: {fileID: 5790447825513800731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6efa1ad10107f4881859c977c5b480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3599279343249421192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4403,30 +4392,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 152857737}
     m_Modifications:
-    - target: {fileID: 2068924161, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: m_Size.x
-      value: 3.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068924161, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: m_Size.y
-      value: 5.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068924161, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: m_Offset.y
-      value: 2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4067993012454380442, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: _playerData
-      value: 
-      objectReference: {fileID: 11400000, guid: 9722a5551866da14eae3e205c4f72752, type: 2}
-    - target: {fileID: 7640122808269306567, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: ThePlayerStatus
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7640122808269306567, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-      propertyPath: AnimationManager
-      value: 
-      objectReference: {fileID: 2101683612}
     - target: {fileID: 8007466312498025151, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: m_RootOrder
       value: 0
