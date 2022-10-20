@@ -6,6 +6,7 @@ public class PlayerDeadState : PlayerStateBase, IPlayerState
 {
     public void OnStateEnter(PlayerStateMachine stateMachineManager)
     {
+        Debug.Log("morto");
         _stateMachine = stateMachineManager;
         stateMachineManager.ThePlayerStatus.KillPlayer();
         _stateMachine.AnimationManager.EnableDeathAnimation();

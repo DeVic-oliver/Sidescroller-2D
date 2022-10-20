@@ -4420,6 +4420,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9722a5551866da14eae3e205c4f72752, type: 2}
     - target: {fileID: 7640122808269306567, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+      propertyPath: ThePlayerStatus
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640122808269306567, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: AnimationManager
       value: 
       objectReference: {fileID: 2101683612}
