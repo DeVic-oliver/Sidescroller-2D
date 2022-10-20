@@ -20,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Init()
     {
         ThePlayerStatus = GetComponent<PlayerStatus>();
+        AnimationManager = GetComponent<PlayerAnimationManager>();
     }
     private void InitFirstState()
     {
