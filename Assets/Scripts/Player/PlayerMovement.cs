@@ -26,26 +26,26 @@ public class PlayerMovement : MonoBehaviour
     private void LateUpdate()
     {
         WatchRunAnimation();
-        WatchJumpAnimation();
+        //WatchJumpAnimation();
     }
-    private void WatchJumpAnimation()
-    {
-        if (_rigidbody.velocity.y > 0)
-        {
-            _animationManager.TriggerJumpAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
-        }
-        else if (_rigidbody.velocity.y < 0)
-        {
-            _animationManager.TriggerFallAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
-        }
-        else if (_rigidbody.velocity.y == 0)
-        {
-            _animationManager.TriggerLandAnimation();
-            _animationManager.EnableAnimation("IsGrounded", true);
-        }
-    }
+    //private void WatchJumpAnimation()
+    //{
+    //    if (_rigidbody.velocity.y > 0)
+    //    {
+    //        _animationManager.TriggerJumpAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", false);
+    //    }
+    //    else if (_rigidbody.velocity.y < 0)
+    //    {
+    //        _animationManager.TriggerFallAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", false);
+    //    }
+    //    else if (_rigidbody.velocity.y == 0)
+    //    {
+    //        _animationManager.TriggerLandAnimation();
+    //        _animationManager.EnableAnimation("IsGrounded", true);
+    //    }
+    //}
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
