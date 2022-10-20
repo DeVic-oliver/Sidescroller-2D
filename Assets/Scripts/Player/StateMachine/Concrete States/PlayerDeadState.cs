@@ -8,6 +8,7 @@ public class PlayerDeadState : PlayerStateBase, IPlayerState
     {
         _stateMachine = stateMachineManager;
         stateMachineManager.ThePlayerStatus.KillPlayer();
+        Debug.Log("The player is Dead");
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)

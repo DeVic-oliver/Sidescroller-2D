@@ -13,6 +13,7 @@ public class PlayerAliveState : PlayerStateBase, IPlayerState
         {
             _stateMachine.ThePlayerStatus.ResurrectPlayer();
         }
+        Debug.Log( "The player is alive" );
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)
