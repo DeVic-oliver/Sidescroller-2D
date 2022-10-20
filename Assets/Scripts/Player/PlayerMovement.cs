@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
         float playerVelocity = Mathf.RoundToInt(_rigidbody.velocity.x);
 
-        Debug.Log(playerVelocity);
         if (playerVelocity != 0)
         {
             _animator.SetBool("IsMoving", true);
