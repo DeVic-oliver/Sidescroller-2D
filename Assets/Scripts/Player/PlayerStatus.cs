@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviour, IDamageable
 {
     private bool isAlive;
     [SerializeField] private PlayerData _playerData;
@@ -42,5 +42,10 @@ public class PlayerStatus : MonoBehaviour
     public void KillPlayer()
     {
         isAlive = false;
+    }
+
+    public void ApplyDamage()
+    {
+        KillPlayer();
     }
 }
