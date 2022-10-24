@@ -36,24 +36,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_rigidbody.velocity.y > 0 && isGrounded)
         {
-            SetIsGroundedToFalse();
             _animationManager.TriggerJumpAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
         }
         else if (_rigidbody.velocity.y < 0 && !isFalling)
         {
             SetIsFallingToTrue();
-            SetIsGroundedToFalse();
             _animationManager.TriggerFallAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
         }
         else if (_rigidbody.velocity.y == 0 && !isGrounded)
         {
-            SetIsGroundedToTrue();
             SetIsFallingToFalse();
             SetJumpedToFalse();
             _animationManager.TriggerLandAnimation();
-            _animationManager.EnableAnimation("IsGrounded", true);
         }
     }
     private void SetJumpedToFalse()
@@ -71,14 +65,6 @@ public class PlayerMovement : MonoBehaviour
     private void SetIsFallingToTrue()
     {
         isFalling = true;
-    }
-    private void SetIsGroundedToFalse()
-    {
-        isGrounded = false;
-    }
-    private void SetIsGroundedToTrue()
-    {
-        isGrounded = true;
     }
     private void CheckJumpInput()
     {
