@@ -2336,6 +2336,24 @@ SortingGroup:
   m_SortingLayerID: -168878705
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!95 &1230799124 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6413013834153556191, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+  m_PrefabInstance: {fileID: 492925911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1230799125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230799115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b737c316ac08c8b4493c4db91f053909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TheAnimator: {fileID: 1230799124}
 --- !u!1 &1233842583
 GameObject:
   m_ObjectHideFlags: 0

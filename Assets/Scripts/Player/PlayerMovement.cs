@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = false;
     private bool hasJumped = false;
     private bool isFalling = false;
+    private bool isMoving = false;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -24,10 +25,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        WatchRunAnimation();
+        CheckIfPlayerIsMoving();
         WatchJumpAnimation();
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
+    }
+    private void CheckIfPlayerIsMoving()
+    {
+        float playerVelocity = Mathf.RoundToInt(GetPlayerRigidbodyHorizontalVelocity());
+        if (playerVelocity != 0)
+        {
+            isMoving = true;
+        }
+        else
+        { 
+            isMoving = false; 
+        }
     }
     private void LateUpdate()
     {
@@ -36,24 +49,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_rigidbody.velocity.y > 0 && isGrounded)
         {
-            SetIsGroundedToFalse();
             _animationManager.TriggerJumpAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
         }
         else if (_rigidbody.velocity.y < 0 && !isFalling)
         {
             SetIsFallingToTrue();
-            SetIsGroundedToFalse();
             _animationManager.TriggerFallAnimation();
-            _animationManager.EnableAnimation("IsGrounded", false);
-        }
-        else if (_rigidbody.velocity.y == 0 && !isGrounded)
-        {
-            SetIsGroundedToTrue();
-            SetIsFallingToFalse();
-            SetJumpedToFalse();
-            _animationManager.TriggerLandAnimation();
-            _animationManager.EnableAnimation("IsGrounded", true);
         }
     }
     private void SetJumpedToFalse()
@@ -72,14 +73,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isFalling = true;
     }
-    private void SetIsGroundedToFalse()
-    {
-        isGrounded = false;
-    }
-    private void SetIsGroundedToTrue()
-    {
-        isGrounded = true;
-    }
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
@@ -97,19 +90,6 @@ public class PlayerMovement : MonoBehaviour
         else if(_rigidbody.velocity.x < 0)
         {
             _rigidbody.velocity -= new Vector2(-.1f, 0);
-        }
-    }
-    private void WatchRunAnimation()
-    {
-        float playerVelocity = Mathf.RoundToInt(_rigidbody.velocity.x);
-
-        if (playerVelocity != 0)
-        {
-            _animationManager.EnableRunAnimation();
-        }
-        else
-        {
-            _animationManager.DisableRunAnimation();
         }
     }
     private void FixedUpdate()
@@ -157,5 +137,21 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = PlayerData.MoveSpeed;
     }
-   
+   /// <summary>
+   /// Check if player rigidbody velocity x is different than zero
+   /// </summary>
+   /// <returns>true | false</returns>
+    public bool IsPlayerMoving()
+    {
+        return isMoving;
+    }
+
+    /// <summary>
+    /// Returns the player rigidbody velocity in X axis;
+    /// </summary>
+    /// <returns>a float number</returns>
+    public float GetPlayerRigidbodyHorizontalVelocity()
+    {
+        return _rigidbody.velocity.x;
+    }
 }
