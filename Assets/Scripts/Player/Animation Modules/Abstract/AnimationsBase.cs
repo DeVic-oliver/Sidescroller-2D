@@ -2,10 +2,12 @@ using UnityEngine;
 
 public abstract class AnimationsBase : MonoBehaviour
 {
-    public Animator TheAnimator;
+    protected Animator _animator;
+    protected PlayerMovement _playerMoviment;
     // Start is called before the first frame update
     void Start()
     {
-        TheAnimator = GetComponent<Animator>();    
+        _animator = GetComponent<Animator>();
+        _playerMoviment = GetComponent<PlayerMovement>();
     }
 }
