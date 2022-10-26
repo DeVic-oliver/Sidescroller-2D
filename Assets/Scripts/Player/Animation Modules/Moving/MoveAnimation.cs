@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class MoveAnimation : AnimationsBase, IToggleAnimation
 {
-    private PlayerMovement _playerMoviment;
-    private void Start()
-    {
-        _playerMoviment = GetComponent<PlayerMovement>();
-    }
     private void Update()
     {
         WatchMoveAnimation();
     }
     private void WatchMoveAnimation()
     {
-        if (_playerMoviment.IsPlayerMoving())
+        if (_playerMoviment.CheckIfIsPlayerMoving())
         {
             EnableAnimation();
         }
@@ -26,11 +21,11 @@ public class MoveAnimation : AnimationsBase, IToggleAnimation
     }
     public void DisableAnimation()
     {
-        TheAnimator.SetBool( "IsMoving", false );
+        _animator.SetBool( "IsMoving", false );
     }
 
     public void EnableAnimation()
     {
-        TheAnimator.SetBool("IsMoving", true);
+        _animator.SetBool("IsMoving", true);
     }
 }

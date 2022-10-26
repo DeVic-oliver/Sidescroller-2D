@@ -7,18 +7,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerData PlayerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
-    private PlayerAnimationManager _animationManager;
-    #region Player JumpStates variables
+    #region Player Movement variables
     private bool isGrounded = false;
-    private bool hasJumped = false;
+    private bool isJumping = false;
     private bool isFalling = false;
     private bool isMoving = false;
+    private bool hasLanded = false;
     #endregion
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _animationManager = GetComponent<PlayerAnimationManager>();
         SetDefaultMoveSpeed();
     }
 
@@ -26,9 +25,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         CheckIfPlayerIsMoving();
-        WatchJumpAnimation();
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
+        if(GetPlayerRigidbodyVerticalVelocity() < 0)
+        {
+            SetIsFalling(true);
+        }
     }
     private void CheckIfPlayerIsMoving()
     {
@@ -42,45 +44,23 @@ public class PlayerMovement : MonoBehaviour
             isMoving = false; 
         }
     }
-    private void LateUpdate()
-    {
-    }
-    private void WatchJumpAnimation()
-    {
-        if (_rigidbody.velocity.y > 0 && isGrounded)
-        {
-            _animationManager.TriggerJumpAnimation();
-        }
-        else if (_rigidbody.velocity.y < 0 && !isFalling)
-        {
-            SetIsFallingToTrue();
-            _animationManager.TriggerFallAnimation();
-        }
-    }
-    private void SetJumpedToFalse()
-    {
-        hasJumped = false;
-    }
-    private void SetJumpedToTrue()
-    {
-        hasJumped = true;
-    }
-    private void SetIsFallingToFalse()
-    {
-        isFalling = false;
-    }
-    private void SetIsFallingToTrue()
-    {
-        isFalling = true;
-    }
     private void CheckJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
-            SetJumpedToTrue();
+            SetIsJumping(true);
         }
     }
+    private void SetIsJumping(bool value)
+    {
+        isJumping = value;
+    }
+   private void SetIsFalling(bool value)
+    {
+        isFalling = value;
+    }
+    
     private void ReducePlayerVelocityByFrame()
     {
         if(_rigidbody.velocity.x > 0)
@@ -107,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
             MovePlayerToRight();
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
-
         CheckRunInput();
     }
     private void MovePlayerToLeft() 
@@ -137,15 +116,47 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = PlayerData.MoveSpeed;
     }
-   /// <summary>
-   /// Check if player rigidbody velocity x is different than zero
-   /// </summary>
-   /// <returns>true | false</returns>
-    public bool IsPlayerMoving()
+    /// <summary>
+    /// Checks if player is moving based on rigidbody velocity X
+    /// </summary>
+    /// <returns>true | false</returns>
+    public bool CheckIfIsPlayerMoving()
     {
         return isMoving;
     }
+    /// <summary>
+    /// Checks if player has jumped based on rigidbody velocity Y
+    /// </summary>
+    /// <returns>true | false</returns>
+    public bool CheckIfPlayerIsJumping()
+    {
+        return isJumping;
+    }
+    /// <summary>
+    /// Checks if player is falling based on rigidbody velocity y
+    /// </summary>
+    /// <returns>true | false</returns>
+    public bool CheckIfIsPlayerFalling()
+    {
+        return isFalling;
+    }
 
+    /// <summary>
+    /// Checks if player is touching the ground
+    /// </summary>
+    /// <returns>true | false</returns>
+    public bool CheckIfPlayerIsOnGround()
+    {
+        return isGrounded;
+    }
+    /// <summary>
+    /// Checks if player is touching the ground
+    /// </summary>
+    /// <returns>true | false</returns>
+    public bool CheckIfPlayerLands()
+    {
+        return hasLanded;
+    }
     /// <summary>
     /// Returns the player rigidbody velocity in X axis;
     /// </summary>
@@ -153,5 +164,32 @@ public class PlayerMovement : MonoBehaviour
     public float GetPlayerRigidbodyHorizontalVelocity()
     {
         return _rigidbody.velocity.x;
+    }
+    /// <summary>
+    /// Returns the player rigidbody velocity in Y axis;
+    /// </summary>
+    /// <returns>a float number</returns>
+    public float GetPlayerRigidbodyVerticalVelocity()
+    {
+        return _rigidbody.velocity.y;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            SetHasLanded(true);
+            SetIsJumping(false);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            SetHasLanded(false);
+        }
+    }
+    private void SetHasLanded(bool value)
+    {
+        hasLanded = value;
     }
 }
