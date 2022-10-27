@@ -7,91 +7,38 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerData PlayerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
-    private PlayerAnimationManager _animationManager;
-    #region Player JumpStates variables
-    private bool isGrounded = false;
-    private bool hasJumped = false;
-    private bool isFalling = false;
-    private bool isMoving = false;
-    #endregion
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _animationManager = GetComponent<PlayerAnimationManager>();
         SetDefaultMoveSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckIfPlayerIsMoving();
-        WatchJumpAnimation();
         CheckJumpInput();
         ReducePlayerVelocityByFrame();
     }
-    private void CheckIfPlayerIsMoving()
-    {
-        float playerVelocity = Mathf.RoundToInt(GetPlayerRigidbodyHorizontalVelocity());
-        if (playerVelocity != 0)
-        {
-            isMoving = true;
-        }
-        else
-        { 
-            isMoving = false; 
-        }
-    }
-    private void LateUpdate()
-    {
-    }
-    private void WatchJumpAnimation()
-    {
-        if (_rigidbody.velocity.y > 0 && isGrounded)
-        {
-            _animationManager.TriggerJumpAnimation();
-        }
-        else if (_rigidbody.velocity.y < 0 && !isFalling)
-        {
-            SetIsFallingToTrue();
-            _animationManager.TriggerFallAnimation();
-        }
-    }
-    private void SetJumpedToFalse()
-    {
-        hasJumped = false;
-    }
-    private void SetJumpedToTrue()
-    {
-        hasJumped = true;
-    }
-    private void SetIsFallingToFalse()
-    {
-        isFalling = false;
-    }
-    private void SetIsFallingToTrue()
-    {
-        isFalling = true;
-    }
     private void CheckJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !hasJumped)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
-            SetJumpedToTrue();
         }
     }
     private void ReducePlayerVelocityByFrame()
     {
-        if(_rigidbody.velocity.x > 0)
+        if (_rigidbody.velocity.x > 0)
         {
             _rigidbody.velocity -= new Vector2(.1f, 0);
         }
-        else if(_rigidbody.velocity.x < 0)
+        else if (_rigidbody.velocity.x < 0)
         {
             _rigidbody.velocity -= new Vector2(-.1f, 0);
         }
     }
+
     private void FixedUpdate()
     {
         CheckMovementInput();
@@ -107,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
             MovePlayerToRight();
             transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
-
         CheckRunInput();
     }
     private void MovePlayerToLeft() 
@@ -137,15 +83,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = PlayerData.MoveSpeed;
     }
-   /// <summary>
-   /// Check if player rigidbody velocity x is different than zero
-   /// </summary>
-   /// <returns>true | false</returns>
-    public bool IsPlayerMoving()
-    {
-        return isMoving;
-    }
-
     /// <summary>
     /// Returns the player rigidbody velocity in X axis;
     /// </summary>
@@ -153,5 +90,13 @@ public class PlayerMovement : MonoBehaviour
     public float GetPlayerRigidbodyHorizontalVelocity()
     {
         return _rigidbody.velocity.x;
+    }
+    /// <summary>
+    /// Returns the player rigidbody velocity in Y axis;
+    /// </summary>
+    /// <returns>a float number</returns>
+    public float GetPlayerRigidbodyVerticalVelocity()
+    {
+        return _rigidbody.velocity.y;
     }
 }

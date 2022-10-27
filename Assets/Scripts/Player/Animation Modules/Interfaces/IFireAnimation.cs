@@ -1,4 +1,4 @@
-public interface NewBehaviourScript
+public interface IFireAnimation
 {
     public void TriggerAnimation();
 }

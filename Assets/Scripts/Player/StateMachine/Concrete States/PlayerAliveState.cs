@@ -6,7 +6,7 @@ public class PlayerAliveState : PlayerStateBase, IPlayerState
     {
         _stateMachine = stateMachineManager;
         _stateMachine.ThePlayerStatus.ResurrectPlayer();
-        _stateMachine.AnimationManager.EnableIdleAnimation();
+        //_stateMachine.AnimationManager.EnableIdleAnimation();
         _stateMachine.GetComponent<PlayerMovement>().enabled = true;
     }
 

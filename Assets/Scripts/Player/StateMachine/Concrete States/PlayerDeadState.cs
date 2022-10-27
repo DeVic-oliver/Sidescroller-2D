@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerDeadState : PlayerStateBase, IPlayerState
 {
     public void OnStateEnter(PlayerStateMachine stateMachineManager)
     {
-        Debug.Log("morto");
         _stateMachine = stateMachineManager;
-        stateMachineManager.ThePlayerStatus.KillPlayer();
-        _stateMachine.AnimationManager.EnableDeathAnimation();
-        _stateMachine.GetComponent<PlayerMovement>().enabled = false;
+        //_stateMachine.AnimationManager.EnableDeathAnimation();
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)
@@ -21,7 +17,7 @@ public class PlayerDeadState : PlayerStateBase, IPlayerState
     protected override void WatchPlayerStatus()
     {
         bool isPlayerAlive = _stateMachine.ThePlayerStatus.GetPlayerAliveStatus();
-        if (isPlayerAlive || Input.anyKeyDown)
+        if (isPlayerAlive)
         {
             _stateMachine.SwitchState(_stateMachine.AliveState);
         }
