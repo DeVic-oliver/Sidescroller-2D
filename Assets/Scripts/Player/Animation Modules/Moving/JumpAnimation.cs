@@ -1,4 +1,4 @@
-public class JumpAnimation : AnimationsBase, IFireAnimation
+public class JumpAnimation : AnimationsBase, IToggleAnimation, IPlayerOnGround
 {
     private void Update()
     {
@@ -6,16 +6,26 @@ public class JumpAnimation : AnimationsBase, IFireAnimation
     }
     private void WatchJumpAnimation()
     {
-        float playerRigidbodyVelocity = _playerMoviment.GetPlayerRigidbodyVerticalVelocity();
-        bool isPlayerJumping = _playerMoviment.CheckIfPlayerIsJumping();
-        if (isPlayerJumping && playerRigidbodyVelocity > 0)
+        bool isPlayerJumping = _playerActions.CheckIfPlayerIsJumping();
+        if (isPlayerJumping)
         {
-            TriggerAnimation();
+            EnableAnimation();
+        }else
+        {
+            DisableAnimation();
         }
     }
-    public void TriggerAnimation()
+    public void EnableAnimation()
     {
-        _animator.SetTrigger("Jump");
+        _animator.SetBool("IsJumping", true);
+        SetPlayerOnGround(false);
     }
-    
+    public void DisableAnimation()
+    {
+        _animator.SetBool("IsJumping", false);
+    }
+    public void SetPlayerOnGround(bool value)
+    {
+        _animator.SetBool("IsGrounded", value);
+    }
 }

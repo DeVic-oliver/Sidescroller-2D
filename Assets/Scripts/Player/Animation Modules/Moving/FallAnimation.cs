@@ -1,4 +1,4 @@
-public class FallAnimation : AnimationsBase, IFireAnimation
+public class FallAnimation : AnimationsBase, IToggleAnimation
 {
     private void Update()
     {
@@ -6,15 +6,23 @@ public class FallAnimation : AnimationsBase, IFireAnimation
     }
     private void WatchFallAnimation()
     {
-        float playerRigidbodyVelocity = _playerMoviment.GetPlayerRigidbodyVerticalVelocity();
-        bool isPlayerFalling = _playerMoviment.CheckIfIsPlayerFalling();
-        if (isPlayerFalling && playerRigidbodyVelocity < 0)
+        bool isPlayerFalling = _playerActions.CheckIfPlayerIsFalling();
+        if (isPlayerFalling)
         {
-            TriggerAnimation();
+            EnableAnimation();
+        }
+        else
+        {
+            DisableAnimation();
         }
     }
-    public void TriggerAnimation()
+    public void EnableAnimation()
     {
-        _animator.SetTrigger("Fall");
+        _animator.SetBool("IsFalling", true);
+    }
+
+    public void DisableAnimation()
+    {
+        _animator.SetBool("IsFalling", false);
     }
 }
