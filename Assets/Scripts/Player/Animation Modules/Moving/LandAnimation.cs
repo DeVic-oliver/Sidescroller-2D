@@ -5,7 +5,6 @@ public class LandAnimation : AnimationsBase, IToggleAnimation, IPlayerOnGround
     private void Update()
     {
         WatchIfPlayerLands();
-        CheckIfPlayerLands();
     }
     private void WatchIfPlayerLands()
     {
@@ -32,19 +31,18 @@ public class LandAnimation : AnimationsBase, IToggleAnimation, IPlayerOnGround
     {
         _animator.SetBool("IsGrounded", value);
     }
-    private void CheckIfPlayerLands()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        bool isPlayerLandingEnd = _animator.GetCurrentAnimatorStateInfo(0).IsName("ANIM_Astronaut_Jump_Landing");
-        if (isPlayerLandingEnd)
+        if (collision.gameObject.CompareTag("ground")) //could use a interface called landable
         {
-            hasLanded = true;
-            _animator.SetBool("HasLanded", hasLanded);
-            DisableAnimation();
+            _animator.SetBool("HasLanded", true);
         }
-        else
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ground")) //could use a interface called landable
         {
-            hasLanded = false;
-            _animator.SetBool("HasLanded", hasLanded);
+            _animator.SetBool("HasLanded", false);
         }
     }
 }
