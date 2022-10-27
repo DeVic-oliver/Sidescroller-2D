@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof (PlayerActions))]
 public class MoveAnimation : AnimationsBase, IToggleAnimation
 {
     private void Update()
@@ -10,7 +8,8 @@ public class MoveAnimation : AnimationsBase, IToggleAnimation
     }
     private void WatchMoveAnimation()
     {
-        if (_playerMoviment.CheckIfIsPlayerMoving())
+        bool isPlayerMoving = _playerActions.CheckIfPlayerIsMoving();
+        if (isPlayerMoving)
         {
             EnableAnimation();
         }
