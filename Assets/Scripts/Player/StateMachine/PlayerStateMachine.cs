@@ -6,7 +6,7 @@ public class PlayerStateMachine : MonoBehaviour
 {
     private IPlayerState currentState;
     public PlayerStatus ThePlayerStatus;
-    public PlayerAnimationManager AnimationManager;
+    //public PlayerAnimationManager AnimationManager;
     #region CONCRETE STATES
     public IPlayerState AliveState = new PlayerAliveState();
     public IPlayerState DeadState = new PlayerDeadState();
@@ -20,7 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Init()
     {
         ThePlayerStatus = GetComponent<PlayerStatus>();
-        AnimationManager = GetComponent<PlayerAnimationManager>();
+        //AnimationManager = GetComponent<PlayerAnimationManager>();
     }
     private void InitFirstState()
     {
