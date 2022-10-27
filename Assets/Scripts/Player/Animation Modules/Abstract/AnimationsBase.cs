@@ -3,11 +3,11 @@ using UnityEngine;
 public abstract class AnimationsBase : MonoBehaviour
 {
     protected Animator _animator;
-    protected PlayerMovement _playerMoviment;
+    protected PlayerActions _playerActions;
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
-        _playerMoviment = GetComponent<PlayerMovement>();
+        _playerActions = GetComponent<PlayerActions>();
     }
 }
