@@ -2086,6 +2086,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ae49818898ef24db5a5cc1ed6eac12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1207329811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207329805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2263f3d91d83b124faa76096bbdb4ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinRangeLimit: -15
+  MaxRangeLimit: 10
+  moveSpeed: 20
 --- !u!1 &1216257641
 GameObject:
   m_ObjectHideFlags: 0
@@ -4154,6 +4169,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ae49818898ef24db5a5cc1ed6eac12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1869982231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869982225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2263f3d91d83b124faa76096bbdb4ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinRangeLimit: -3
+  MaxRangeLimit: 5
+  moveSpeed: 5
 --- !u!1 &1877822786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,15 +4444,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2944973745361044811, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2944973745361044811, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2944973745361044811, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2944973745361044811, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4439,6 +4469,10 @@ PrefabInstance:
     - target: {fileID: 3176744783887258002, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_Name
       value: PFB_Enemy_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176744783887258002, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
