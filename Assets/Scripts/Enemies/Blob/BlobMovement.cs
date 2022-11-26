@@ -19,19 +19,16 @@ public class BlobMovement : MonoBehaviour
 
     void Start()
     {
-        TreatXRangeUnits();
+        TreatXRangeUnits(MinRangeLimit);
+        TreatXRangeUnits(MaxRangeLimit);
         localMinRangeLimit = Mathf.RoundToInt(transform.localPosition.x) - MinRangeLimit;
         localMaxRangeLimit = Mathf.RoundToInt(transform.localPosition.x) + MaxRangeLimit;
     }
-    private void TreatXRangeUnits()
+    private void TreatXRangeUnits(float value)
     {
-        if(MinRangeLimit < 0)
+        if (value < 0)
         {
-            MinRangeLimit *= -1;
-        }
-        if(MaxRangeLimit < 0)
-        {
-            MaxRangeLimit *= -1;
+            value *= -1;
         }
     }
     void Update()
@@ -41,9 +38,7 @@ public class BlobMovement : MonoBehaviour
     private void MoveBlob()
     {
         CheckMoveDirection();
-        Vector3 position = movementVector * moveSpeed * Time.deltaTime;
-        Debug.Log(position);
-        transform.Translate(position);
+        transform.position += movementVector * moveSpeed * Time.deltaTime;
     }
     private void CheckMoveDirection()
     {
@@ -59,21 +54,20 @@ public class BlobMovement : MonoBehaviour
     }
     private void CheckIfReachedAtMinimumRangeLimit(int positionRounded)
     {
-        if (positionRounded < localMinRangeLimit)
+        if (positionRounded <= localMinRangeLimit)
         {
+            RotateBlob(180);
             ChangeMovementDirection(MovementDirection.Right);
             ChangeMovement(Vector3.right);
-            RotateBlob(180);
         }
     }
     private void CheckIfReachedAtMaximumRangeLimit(int positionRounded)
     {
-        if (positionRounded > localMaxRangeLimit)
+        if (positionRounded >= localMaxRangeLimit)
         {
-            Debug.Log("checando max range limit");
-
-            ChangeMovementDirection(MovementDirection.Left);
             RotateBlob(0);
+            ChangeMovementDirection(MovementDirection.Left);
+            ChangeMovement(Vector3.left);
         }
     }
     private void ChangeMovement(Vector3 newMovementVector)
@@ -84,9 +78,9 @@ public class BlobMovement : MonoBehaviour
     {
         _movementDirection = movementDirection;
     }
-    private void RotateBlob(float value = 180)
+    private void RotateBlob(float value)
     {
-        Vector3 eulers = Vector3.up * value;
-        transform.Rotate(eulers, Space.Self);
+        Quaternion newRotation = Quaternion.Euler(0, value, 0);
+        transform.rotation = newRotation;
     }
 }

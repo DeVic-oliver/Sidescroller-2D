@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerStatus : MonoBehaviour, IDamageable
+using Utils.Interfaces.General;
+public class PlayerStatus : MonoBehaviour, IInstaKillable
 {
     private bool isAlive;
     [SerializeField] private PlayerData _playerData;
@@ -22,7 +22,6 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     void Update()
     {
     }
-
     /// <summary>
     /// Returns a bool value if player is alive. Default is true!
     /// </summary>
@@ -38,16 +37,15 @@ public class PlayerStatus : MonoBehaviour, IDamageable
     {
         isAlive = true;
     }
+    public void ApplyInstaKill()
+    {
+        KillPlayer();
+    }
     /// <summary>
     /// Sets the player Alive Status to false and kills the player!
     /// </summary>
     public void KillPlayer()
     {
         isAlive = false;
-    }
-
-    public void ApplyDamage()
-    {
-        KillPlayer();
     }
 }

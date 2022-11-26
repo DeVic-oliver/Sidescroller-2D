@@ -11,6 +11,8 @@ public class PlayerStateMachine : MonoBehaviour
     public IPlayerState AliveState = new PlayerAliveState();
     public IPlayerState DeadState = new PlayerDeadState();
     #endregion
+    public Animator PlayerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void Init()
     {
         ThePlayerStatus = GetComponent<PlayerStatus>();
+        PlayerAnimator = GetComponent<Animator>();
         //AnimationManager = GetComponent<PlayerAnimationManager>();
     }
     private void InitFirstState()
