@@ -19,19 +19,16 @@ public class BlobMovement : MonoBehaviour
 
     void Start()
     {
-        TreatXRangeUnits();
+        TreatXRangeUnits(MinRangeLimit);
+        TreatXRangeUnits(MaxRangeLimit);
         localMinRangeLimit = Mathf.RoundToInt(transform.localPosition.x) - MinRangeLimit;
         localMaxRangeLimit = Mathf.RoundToInt(transform.localPosition.x) + MaxRangeLimit;
     }
-    private void TreatXRangeUnits()
+    private void TreatXRangeUnits(float value)
     {
-        if(MinRangeLimit < 0)
+        if (value < 0)
         {
-            MinRangeLimit *= -1;
-        }
-        if(MaxRangeLimit < 0)
-        {
-            MaxRangeLimit *= -1;
+            value *= -1;
         }
     }
     void Update()
