@@ -54,22 +54,20 @@ public class BlobMovement : MonoBehaviour
     }
     private void CheckIfReachedAtMinimumRangeLimit(int positionRounded)
     {
-        if (positionRounded < localMinRangeLimit)
+        if (positionRounded <= localMinRangeLimit)
         {
             RotateBlob(180);
             ChangeMovementDirection(MovementDirection.Right);
             ChangeMovement(Vector3.right);
-            RotateBlob(180);
         }
     }
     private void CheckIfReachedAtMaximumRangeLimit(int positionRounded)
     {
-        if (positionRounded > localMaxRangeLimit)
+        if (positionRounded >= localMaxRangeLimit)
         {
-            Debug.Log("checando max range limit");
-
-            ChangeMovementDirection(MovementDirection.Left);
             RotateBlob(0);
+            ChangeMovementDirection(MovementDirection.Left);
+            ChangeMovement(Vector3.left);
         }
     }
     private void ChangeMovement(Vector3 newMovementVector)
