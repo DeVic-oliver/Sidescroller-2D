@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerDeadState : PlayerStateBase, IPlayerState
 {
+    private PlayerMovement _playerMovements;
     public void OnStateEnter(PlayerStateMachine stateMachineManager)
     {
         _stateMachine = stateMachineManager;
-        //_stateMachine.AnimationManager.EnableDeathAnimation();
+        _stateMachine.PlayerAnimator.SetBool("IsAlive", false);
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)

@@ -6,13 +6,14 @@ public class PlayerAliveState : PlayerStateBase, IPlayerState
     {
         _stateMachine = stateMachineManager;
         _stateMachine.ThePlayerStatus.ResurrectPlayer();
-        //_stateMachine.AnimationManager.EnableIdleAnimation();
+        _stateMachine.PlayerAnimator.SetBool("IsAlive", true);
         _stateMachine.GetComponent<PlayerMovement>().enabled = true;
     }
 
     public void OnStateUpdate(PlayerStateMachine stateMachineManager)
     {
         WatchPlayerStatus();
+        Debug.Log("alive STATE");
     }
 
     protected override void WatchPlayerStatus()
