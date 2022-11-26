@@ -38,9 +38,7 @@ public class BlobMovement : MonoBehaviour
     private void MoveBlob()
     {
         CheckMoveDirection();
-        Vector3 position = movementVector * moveSpeed * Time.deltaTime;
-        Debug.Log(position);
-        transform.Translate(position);
+        transform.position += movementVector * moveSpeed * Time.deltaTime;
     }
     private void CheckMoveDirection()
     {
