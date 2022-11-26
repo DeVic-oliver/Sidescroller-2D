@@ -58,6 +58,7 @@ public class BlobMovement : MonoBehaviour
     {
         if (positionRounded < localMinRangeLimit)
         {
+            RotateBlob(180);
             ChangeMovementDirection(MovementDirection.Right);
             ChangeMovement(Vector3.right);
             RotateBlob(180);
@@ -81,9 +82,9 @@ public class BlobMovement : MonoBehaviour
     {
         _movementDirection = movementDirection;
     }
-    private void RotateBlob(float value = 180)
+    private void RotateBlob(float value)
     {
-        Vector3 eulers = Vector3.up * value;
-        transform.Rotate(eulers, Space.Self);
+        Quaternion newRotation = Quaternion.Euler(0, value, 0);
+        transform.rotation = newRotation;
     }
 }
