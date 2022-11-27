@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Coin : MonoBehaviour
+using Utils.Interfaces.Item;
+public class Coin : MonoBehaviour, ICollectable
 {
-    // Start is called before the first frame update
-    void Start()
+    public static int CoinsCollected = 0;
+    public void ApplyPoint()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CoinsCollected++;
+        Destroy(gameObject);
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Utils.Interfaces.Item;
 public class PlayerActions : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
@@ -98,6 +98,15 @@ public class PlayerActions : MonoBehaviour
             isLanding = true;
             isJumping = false;
             isFalling = false;
+        }
+        CheckItemCollision(collision);
+    }
+    private void CheckItemCollision(Collision2D collision)
+    {
+        ICollectable collectableItem = collision.gameObject.GetComponent<ICollectable>();
+        if (collectableItem != null)
+        {
+            collectableItem.ApplyPoint();
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
