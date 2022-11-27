@@ -412,7 +412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ae49818898ef24db5a5cc1ed6eac12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 0
+  damagedColor: {r: 1, g: 0.3726415, b: 0.3726415, a: 1}
+  healthPoints: 3
 --- !u!114 &1869982231
 MonoBehaviour:
   m_ObjectHideFlags: 0
