@@ -7,6 +7,12 @@ namespace Player.Weapon
         [SerializeField] private float speed;
         [SerializeField] private int baseDamage;
         private float timeToAutoDestroy = 2;
+        private Vector3 movementVector = Vector3.right;
+
+        public void ChangeMovementVectorTo(Vector3 moveVector)
+        {
+            movementVector = moveVector;
+        }
         // Update is called once per frame
         void Update()
         {
@@ -15,19 +21,21 @@ namespace Player.Weapon
         }
         private void FlyStraightFoward()
         {
-            transform.localPosition += Vector3.right * speed * Time.deltaTime;
+            transform.Translate(movementVector * speed * Time.deltaTime);
         }
         private void DestroyMeAfterTime(float timeToDestroy)
         {
             Destroy(gameObject, timeToDestroy);
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            IDamageable damageable = GetComponent<IDamageable>();
+            IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
             if(damageable != null)
             {
                 damageable.ApplyDamage(baseDamage);
+                Destroy(gameObject);
             }
         }
+       
     }
 }
