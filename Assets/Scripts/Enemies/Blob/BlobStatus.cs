@@ -16,7 +16,10 @@ public class BlobStatus : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        
+        if(healthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
