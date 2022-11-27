@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils.Interfaces.General;
+
+
 public class PlayerStatus : MonoBehaviour, IInstaKillable
 {
     private bool isAlive;
     [SerializeField] private PlayerData _playerData;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class PlayerStatus : MonoBehaviour, IInstaKillable
     void Update()
     {
     }
+   
     /// <summary>
     /// Returns a bool value if player is alive. Default is true!
     /// </summary>
