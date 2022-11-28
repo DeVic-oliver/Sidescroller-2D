@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7121516335038750314}
   - component: {fileID: 1174909945680559769}
+  - component: {fileID: 1191669260}
+  - component: {fileID: 1191669263}
+  - component: {fileID: 715300923650847141}
   m_Layer: 0
   m_Name: SPR_Coin
   m_TagString: Untagged
@@ -82,3 +85,45 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1191669260
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316975882459904861}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
+--- !u!114 &1191669263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316975882459904861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e09e12f274d1a0744a923edef4a56e96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinData: {fileID: 11400000, guid: 2da481a5bf4d03c47ab76ce388444404, type: 2}
+--- !u!114 &715300923650847141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316975882459904861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f32a7f15a3333a74682ad6b1e1532b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsPanel: {fileID: 0}
