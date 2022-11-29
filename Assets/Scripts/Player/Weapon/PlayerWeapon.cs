@@ -7,6 +7,11 @@ namespace Player.Weapon
     {
         [SerializeField] private WeaponBullet bullet;
         [SerializeField] private Transform weaponHolder;
+        [SerializeField] private PlayerStatus _playerStatus;
+
+        private void Start()
+        {
+        }
         void Update()
         {
             CheckPlayerLookingSide();
@@ -14,7 +19,7 @@ namespace Player.Weapon
         }
         private void FireWeapon()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && _playerStatus.GetPlayerAliveStatus())
             {
                 Instantiate(bullet, transform.position, transform.rotation);
             }
