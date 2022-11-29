@@ -1,6 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
-[CreateAssetMenu(menuName = "ScriptableObject/Main Menu", fileName = "SCO_ButtonsData", order = 1)]
+[CreateAssetMenu(menuName = "ScriptableObjects/Main Menu", fileName = "SCO_ButtonsData", order = 1)]
 public class ButtonsData : ScriptableObject
 {
     [Header("Animation Parameters")]

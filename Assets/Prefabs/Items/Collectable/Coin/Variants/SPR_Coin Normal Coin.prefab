@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1191669263, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
+      propertyPath: soCounter
+      value: 
+      objectReference: {fileID: 11400000, guid: fda24d9f76f1a8e41897545309db094b, type: 2}
     - target: {fileID: 6316975882459904861, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
       propertyPath: m_Name
       value: SPR_Coin Normal Coin

@@ -10,7 +10,11 @@ PrefabInstance:
     - target: {fileID: 1191669263, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
       propertyPath: coinData
       value: 
-      objectReference: {fileID: 11400000, guid: e781c1d7828afbc49b7ad8aaf87c2b36, type: 2}
+      objectReference: {fileID: 11400000, guid: 2da481a5bf4d03c47ab76ce388444404, type: 2}
+    - target: {fileID: 1191669263, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
+      propertyPath: soCounter
+      value: 
+      objectReference: {fileID: 11400000, guid: fda24d9f76f1a8e41897545309db094b, type: 2}
     - target: {fileID: 1174909945680559769, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
       propertyPath: m_Color.b
       value: 0.54685384
@@ -25,7 +29,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6316975882459904861, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
       propertyPath: m_Name
-      value: SPR_Coin Variant
+      value: SPR_Coin Super Coin
       objectReference: {fileID: 0}
     - target: {fileID: 7121516335038750314, guid: 8d8a13918cfb7e8409812cdc3c172550, type: 3}
       propertyPath: m_RootOrder
