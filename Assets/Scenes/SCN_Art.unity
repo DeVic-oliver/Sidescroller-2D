@@ -667,6 +667,10 @@ PrefabInstance:
       propertyPath: weaponHolder
       value: 
       objectReference: {fileID: 1230799116}
+    - target: {fileID: 4680740270613455777, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+      propertyPath: _playerStatus
+      value: 
+      objectReference: {fileID: 1830801912}
     - target: {fileID: 5757580776602233894, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.93
@@ -4436,6 +4440,17 @@ SpriteShapeRenderer:
   m_LocalAABB:
     m_Center: {x: -31.774208, y: -1.2600663, z: 0}
     m_Extent: {x: 112.91244, y: 2.2659514, z: 0}
+--- !u!114 &1830801912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1230799122, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+  m_PrefabInstance: {fileID: 492925911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2642cd42f2016498081dffb1cb8114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1849393367
 GameObject:
   m_ObjectHideFlags: 0

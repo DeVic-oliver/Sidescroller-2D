@@ -7,18 +7,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerData PlayerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
+    private PlayerStatus _playerStatus;
     // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _playerStatus = GetComponent<PlayerStatus>();
         SetDefaultMoveSpeed();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckJumpInput();
-        ReducePlayerVelocityByFrame();
+        if (_playerStatus.GetPlayerAliveStatus())
+        {
+            CheckJumpInput();
+            ReducePlayerVelocityByFrame();
+        }
     }
     private void CheckJumpInput()
     {
@@ -41,7 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckMovementInput();
+        if (_playerStatus.GetPlayerAliveStatus())
+        {
+            CheckMovementInput();
+        }
     }
     private void CheckMovementInput()
     {
