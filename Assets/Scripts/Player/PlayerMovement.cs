@@ -1,76 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
+using Assets.Scripts.Core.Interfaces;
+public class PlayerMovement : IMoveable
 {
-    [SerializeField] private PlayerData PlayerData;
+    private PlayerData _playerData;
     private Rigidbody2D _rigidbody;
     private float moveSpeed;
-    private PlayerStatus _playerStatus;
-    // Start is called before the first frame update
-    void Start()
+    private float jumpForce;
+    private float runSpeed;
+    public PlayerMovement(PlayerData playerData, Rigidbody2D rigidbody)
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _playerStatus = GetComponent<PlayerStatus>();
-        SetDefaultMoveSpeed();
+        _playerData = playerData;
+        moveSpeed = playerData.MoveSpeed;
+        jumpForce = playerData.JumpForce;
+        runSpeed = playerData.RunSpeed;
+        _rigidbody = rigidbody;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Move(bool isAlive)
     {
-        if (_playerStatus.GetPlayerAliveStatus())
+        if (isAlive)
         {
+            float inputAxisValue = Input.GetAxis("Horizontal");
+            _rigidbody.velocity = new Vector2(inputAxisValue * moveSpeed, _rigidbody.velocity.y);
+            RotatePlayer(inputAxisValue);
             CheckJumpInput();
-            ReducePlayerVelocityByFrame();
+            CheckRunInput();
+        }
+    }
+    private void RotatePlayer(float axisValue)
+    {
+        if(axisValue < 0)
+        {
+            _rigidbody.transform.eulerAngles = Vector3.up * 180f;
+        }
+        else if(axisValue > 0)
+        {
+            _rigidbody.transform.eulerAngles = Vector3.up * 0;
         }
     }
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
+            _rigidbody.velocity = Vector2.up * jumpForce;
         }
-    }
-    private void ReducePlayerVelocityByFrame()
-    {
-        if (_rigidbody.velocity.x > 0)
-        {
-            _rigidbody.velocity -= new Vector2(.1f, 0);
-        }
-        else if (_rigidbody.velocity.x < 0)
-        {
-            _rigidbody.velocity -= new Vector2(-.1f, 0);
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_playerStatus.GetPlayerAliveStatus())
-        {
-            CheckMovementInput();
-        }
-    }
-    private void CheckMovementInput()
-    {
-        if(Input.GetKey(KeyCode.A))
-        {
-            MovePlayerToLeft();
-            transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
-        }else if (Input.GetKey(KeyCode.D))
-        {
-            MovePlayerToRight();
-            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        }
-        CheckRunInput();
-    }
-    private void MovePlayerToLeft() 
-    {
-        _rigidbody.velocity = new Vector2(-moveSpeed, _rigidbody.velocity.y);
-    }
-    private void MovePlayerToRight()
-    {
-        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
     }
     private void CheckRunInput()
     {
@@ -80,16 +54,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            SetDefaultMoveSpeed();
+            SetDefaultSpeed();
         }
     }
     private void SetRunSpeed()
     {
-        moveSpeed = PlayerData.RunSpeed;
+        moveSpeed = runSpeed;
     }
-    private void SetDefaultMoveSpeed()
+    private void SetDefaultSpeed()
     {
-        moveSpeed = PlayerData.MoveSpeed;
+        moveSpeed = _playerData.MoveSpeed;
     }
     /// <summary>
     /// Returns the player rigidbody velocity in X axis;
