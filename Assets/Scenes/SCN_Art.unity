@@ -287,6 +287,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4365916143313763004, guid: d6b5a1200d856a444a31b7f532233d8b, type: 3}
+      propertyPath: soCoin
+      value: 
+      objectReference: {fileID: 11400000, guid: 4446eea29aaab394f9181428ab8ec806, type: 2}
+    - target: {fileID: 4365916143313763004, guid: d6b5a1200d856a444a31b7f532233d8b, type: 3}
       propertyPath: coinData
       value: 
       objectReference: {fileID: 11400000, guid: e781c1d7828afbc49b7ad8aaf87c2b36, type: 2}
@@ -2725,7 +2729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsPanel: {fileID: 1763259487}
-  soCounter: {fileID: 11400000, guid: fda24d9f76f1a8e41897545309db094b, type: 2}
 --- !u!4 &1424519129
 Transform:
   m_ObjectHideFlags: 0
@@ -3265,6 +3268,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2503064403948754226, guid: 79dc740a7fb5f0445bbc0508296da941, type: 3}
+      propertyPath: soCoin
+      value: 
+      objectReference: {fileID: 11400000, guid: 2da481a5bf4d03c47ab76ce388444404, type: 2}
     - target: {fileID: 4640993157611087191, guid: 79dc740a7fb5f0445bbc0508296da941, type: 3}
       propertyPath: m_RootOrder
       value: 10

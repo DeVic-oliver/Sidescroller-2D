@@ -5,11 +5,11 @@ using Core.Interfaces;
 public class Coin : MonoBehaviour, ICollectable
 {
     public static int CoinsCollected = 0;
-    [SerializeField] private SOCounter soCounter;
+    [SerializeField] private SOCoin soCoin;
 
     public void ApplyPoint()
     {
-        CoinsCollected += soCounter.;
+        CoinsCollected += soCoin.CoinValue;
         Destroy(gameObject);
     }
 }

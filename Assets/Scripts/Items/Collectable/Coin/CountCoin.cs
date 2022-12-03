@@ -4,7 +4,6 @@ using TMPro;
 public class CountCoin : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI coinsPanel;
-    [SerializeField] private SOCounter soCounter;
     private void Update()
     {
         UpdateCoinsPanel();

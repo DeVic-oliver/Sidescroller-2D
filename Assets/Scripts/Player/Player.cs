@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         return damageValue;
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision collision)
     {
         ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
         if(collectable != null)
