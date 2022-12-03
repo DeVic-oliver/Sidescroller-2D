@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils.Interfaces.General;
+using Core.Interfaces;
 using DG.Tweening;
 public class BlobStatus : MonoBehaviour, IDamageable
 {

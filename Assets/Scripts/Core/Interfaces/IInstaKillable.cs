@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Utils.Interfaces.General
+namespace Assets.Scripts.Core.Interfaces
 {
     public interface IInstaKillable
     {

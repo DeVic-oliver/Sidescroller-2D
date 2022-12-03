@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Core.Interfaces;
-
+using Assets.Core.Interfaces;
+using Assets.Player;
 [RequireComponent(typeof (Rigidbody2D))]
 public class Player : MonoBehaviour, IDamageable
 {
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         return damageValue;
     }
-    private void OnCollisionEnter2D(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
         if(collectable != null)

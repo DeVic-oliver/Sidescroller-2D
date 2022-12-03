@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class PlayerAnimationManager
+namespace Assets.Scripts.Player {
+    public class PlayerAnimationManager
 {
     private Animator _animator;
     private Rigidbody2D _rigidbody;
@@ -58,4 +58,5 @@ public class PlayerAnimationManager
     {
         _animator.SetBool(aliveAnimID, aliveValue);
     }
+}
 }
