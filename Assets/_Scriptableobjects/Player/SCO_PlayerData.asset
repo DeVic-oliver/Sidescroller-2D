@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsAlive: 1
   MoveSpeed: 10
+  HealthPoints: 3
   JumpForce: 10
   RunSpeed: 15
