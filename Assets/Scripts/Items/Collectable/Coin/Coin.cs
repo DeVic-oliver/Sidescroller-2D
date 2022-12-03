@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Core.Interfaces;
+using Assets.Scripts.Core.Interfaces;
 public class Coin : MonoBehaviour, ICollectable
 {
     public static int CoinsCollected = 0;

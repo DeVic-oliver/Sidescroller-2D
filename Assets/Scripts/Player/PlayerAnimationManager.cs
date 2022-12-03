@@ -1,5 +1,6 @@
 using UnityEngine;
-namespace Assets.Scripts.Player {
+namespace Assets.Scripts.PlayerComponent
+{
     public class PlayerAnimationManager
 {
     private Animator _animator;
