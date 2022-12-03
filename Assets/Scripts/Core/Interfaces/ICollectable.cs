@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Utils.Interfaces.Item
+namespace Core.Interfaces
 {
     public interface ICollectable
     {
