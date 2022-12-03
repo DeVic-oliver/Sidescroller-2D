@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof (Rigidbody2D))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField] private PlayerData _playerData;
     public bool IsAlive { get; set; }
     public int HealthPoints { get; private set; }
     private PlayerMovement _playerMovements;
@@ -24,13 +23,11 @@ public class Player : MonoBehaviour
     {
         _playerMovements = new PlayerMovement(_playerData, _rigidbody);
     }
-    // Start is called before the first frame update
     void Start()
     {
         IsAlive = true;
         HealthPoints = _playerData.HealthPoints;
     }
-    // Update is called once per frame
     void Update()
     {
         IsAlive = CheckIfPlayerStillAlive();
@@ -46,6 +43,25 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(IsAlive);
+    }
+    public void ApplyDamage(int damageValue)
+    {
+        int damageValueTreated = TreatedDamageValue(damageValue);
+        if(damageValueTreated >= HealthPoints)
+        {
+            HealthPoints = 0;
+        }
+        else
+        {
+            HealthPoints -= damageValueTreated;
+        }
+    }
+    private int TreatedDamageValue(int damageValue)
+    {
+        if(damageValue <= 0)
+        {
+            return 0;
+        }
+        return damageValue;
     }
 }
