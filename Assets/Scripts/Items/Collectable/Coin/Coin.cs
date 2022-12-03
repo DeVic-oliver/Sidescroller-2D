@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour, ICollectable
 
     public void ApplyPoint()
     {
-        CoinsCollected += coinData.CoinValue;
+        CoinsCollected += soCounter.;
         Destroy(gameObject);
     }
 }
