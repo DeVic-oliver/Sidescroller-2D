@@ -7,8 +7,10 @@ public class Player : MonoBehaviour, IDamageable
 {
     public bool IsAlive { get; set; }
     public int HealthPoints { get; private set; }
+    [SerializeField] private PlayerData _playerData;
     private PlayerMovement _playerMovements;
     private Rigidbody2D _rigidbody;
+    private PlayerAnimationManager _playerAnimationManager;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour, IDamageable
     private void InitObjects()
     {
         _playerMovements = new PlayerMovement(_playerData, _rigidbody);
+        _playerAnimationManager = new PlayerAnimationManager(GetComponent<Animator>(), _rigidbody);
     }
     void Start()
     {
@@ -32,6 +35,13 @@ public class Player : MonoBehaviour, IDamageable
     {
         IsAlive = CheckIfPlayerStillAlive();
         _playerMovements.Move(IsAlive);
+        WatchPlayerAnimations();
+    }
+    private void WatchPlayerAnimations()
+    {
+        _playerAnimationManager.WatchMovingAnimation();
+        _playerAnimationManager.WatchingAirAnimation();
+        _playerAnimationManager.WatchLifeAnimation(IsAlive);
     }
     private bool CheckIfPlayerStillAlive()
     {
