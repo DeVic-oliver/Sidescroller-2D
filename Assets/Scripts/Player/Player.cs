@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Core.Interfaces;
 
 [RequireComponent(typeof (Rigidbody2D))]
 public class Player : MonoBehaviour, IDamageable
@@ -73,5 +74,13 @@ public class Player : MonoBehaviour, IDamageable
             return 0;
         }
         return damageValue;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
+        if(collectable != null)
+        {
+            collectable.ApplyPoint();
+        }
     }
 }
