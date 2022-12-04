@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class BlobMovement : MonoBehaviour
+using Assets.Scripts.Core.Interfaces;
+public class BlobMovement : IMoveable
 {
     private enum MovementDirection
     {
         Left,
         Right
     }
-    [Header("Movement Settings")]
-    [SerializeField] private int MinRangeLimit;
-    [SerializeField] private int MaxRangeLimit;
-    [SerializeField] private float moveSpeed;
+    private int _minMoveRangeLimit;
+    private int _maxMoveRangeLimit;
+    private float _moveSpeed;
+    private Transform _transform;
     private int localMinRangeLimit;
     private int  localMaxRangeLimit;
     private Vector3 movementVector = Vector3.left;
     private MovementDirection _movementDirection;
 
-    void Start()
+    public BlobMovement(float moveSpeed, int minMoveRangeLimit, int maxMoveRangeLimit, Transform blobTransform)
     {
-        TreatXRangeUnits(MinRangeLimit);
-        TreatXRangeUnits(MaxRangeLimit);
-        localMinRangeLimit = Mathf.RoundToInt(transform.localPosition.x) - MinRangeLimit;
-        localMaxRangeLimit = Mathf.RoundToInt(transform.localPosition.x) + MaxRangeLimit;
+        _moveSpeed = moveSpeed;
+        _minMoveRangeLimit = minMoveRangeLimit;
+        _maxMoveRangeLimit = maxMoveRangeLimit;
+        _transform = blobTransform;
+        TreatXRangeUnits(_minMoveRangeLimit);
+        TreatXRangeUnits(_maxMoveRangeLimit);
+        localMinRangeLimit = Mathf.RoundToInt(_transform.localPosition.x) - _minMoveRangeLimit;
+        localMaxRangeLimit = Mathf.RoundToInt(_transform.localPosition.x) + _maxMoveRangeLimit;
     }
+   
     private void TreatXRangeUnits(float value)
     {
         if (value < 0)
@@ -31,18 +37,17 @@ public class BlobMovement : MonoBehaviour
             value *= -1;
         }
     }
-    void Update()
+    public void Move(bool isAlive)
     {
-        MoveBlob();
-    }
-    private void MoveBlob()
-    {
-        CheckMoveDirection();
-        transform.position += movementVector * moveSpeed * Time.deltaTime;
+        if (isAlive)
+        {
+            CheckMoveDirection();
+            _transform.position += movementVector * _moveSpeed * Time.deltaTime;
+        }
     }
     private void CheckMoveDirection()
     {
-        int positionRounded = Mathf.RoundToInt(transform.localPosition.x);
+        int positionRounded = Mathf.RoundToInt(_transform.localPosition.x);
         if (_movementDirection == MovementDirection.Left)
         {
             CheckIfReachedAtMinimumRangeLimit(positionRounded);
@@ -81,6 +86,6 @@ public class BlobMovement : MonoBehaviour
     private void RotateBlob(float value)
     {
         Quaternion newRotation = Quaternion.Euler(0, value, 0);
-        transform.rotation = newRotation;
+        _transform.rotation = newRotation;
     }
 }
