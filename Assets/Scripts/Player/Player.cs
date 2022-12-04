@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Core.Interfaces;
+using Assets.Scripts.Core.Classes.Static;
 namespace Assets.Scripts.PlayerComponent
 {
     [RequireComponent(typeof (Rigidbody2D))]
@@ -10,7 +11,7 @@ namespace Assets.Scripts.PlayerComponent
         public bool IsAlive { get; set; }
         public int HealthPoints { get; private set; }
         [SerializeField] private PlayerData _playerData;
-        private PlayerMovement _playerMovements;
+        private IMoveable _playerMovements;
         private Rigidbody2D _rigidbody;
         private PlayerAnimationManager _playerAnimationManager;
 
@@ -35,7 +36,7 @@ namespace Assets.Scripts.PlayerComponent
         }
         void Update()
         {
-            IsAlive = CheckIfPlayerStillAlive();
+            IsAlive = LifeStatusParser.GetLifeStatusBasedOnHealth(HealthPoints);
             _playerMovements.Move(IsAlive);
             WatchPlayerAnimations();
         }
@@ -45,36 +46,17 @@ namespace Assets.Scripts.PlayerComponent
             _playerAnimationManager.WatchingAirAnimation();
             _playerAnimationManager.WatchLifeAnimation(IsAlive);
         }
-        private bool CheckIfPlayerStillAlive()
-        {
-            if(HealthPoints <= 0)
-            {
-                return false;
-            }
-            return true;
-        }
         private void FixedUpdate()
         {
         }
         public void ApplyDamage(int damageValue)
         {
-            int damageValueTreated = TreatedDamageValue(damageValue);
+            int damageValueTreated = TreatNegativeNumber.GetTreatedValue(damageValue);
             if(damageValueTreated >= HealthPoints)
             {
                 HealthPoints = 0;
             }
-            else
-            {
-                HealthPoints -= damageValueTreated;
-            }
-        }
-        private int TreatedDamageValue(int damageValue)
-        {
-            if(damageValue <= 0)
-            {
-                return 0;
-            }
-            return damageValue;
+            HealthPoints -= damageValueTreated;
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
