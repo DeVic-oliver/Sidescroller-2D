@@ -58,7 +58,7 @@ namespace Assets.Scripts.PlayerComponent
             }
             HealthPoints -= damageValueTreated;
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
             if(collectable != null)
