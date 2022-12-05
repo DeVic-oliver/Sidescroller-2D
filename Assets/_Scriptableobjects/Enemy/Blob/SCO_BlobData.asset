@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3079ef65aaa639b49b678087d6a47e14, type: 3}
   m_Name: SCO_BlobData
   m_EditorClassIdentifier: 
-  HealthPoints: 0
-  MinMoveRangeLimit: 0
-  MaxMoveRangeLimit: 0
-  MoveSpeed: 0
+  HealthPoints: 5
+  MinMoveRangeLimit: 3
+  MaxMoveRangeLimit: 7
+  MoveSpeed: 8
