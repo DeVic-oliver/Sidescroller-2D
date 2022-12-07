@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f23c509ee153df43b7416db2ea2ca39, type: 3}
-  m_Name: SCO_PlayerData
+  m_Script: {fileID: 11500000, guid: 3079ef65aaa639b49b678087d6a47e14, type: 3}
+  m_Name: SCO_BlobData
   m_EditorClassIdentifier: 
-  IsAlive: 1
-  MoveSpeed: 10
-  HealthPoints: 3
-  JumpForce: 10
-  RunSpeed: 15
+  HealthPoints: 5
+  MinMoveRangeLimit: 3
+  MaxMoveRangeLimit: 7
+  MoveSpeed: 8

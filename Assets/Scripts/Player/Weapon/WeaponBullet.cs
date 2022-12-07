@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-namespace Player.Weapon
+using Assets.Scripts.Core.Interfaces;
+namespace Assets.Scripts.PlayerComponent
 {
     public class WeaponBullet : MonoBehaviour
     {
@@ -36,6 +37,5 @@ namespace Player.Weapon
                 Destroy(gameObject);
             }
         }
-       
     }
 }

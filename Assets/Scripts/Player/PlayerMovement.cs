@@ -1,110 +1,72 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
+using Assets.Scripts.Core.Interfaces;
+namespace Assets.Scripts.PlayerComponent
 {
-    [SerializeField] private PlayerData PlayerData;
-    private Rigidbody2D _rigidbody;
-    private float moveSpeed;
-    private PlayerStatus _playerStatus;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMovement : IMoveable
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _playerStatus = GetComponent<PlayerStatus>();
-        SetDefaultMoveSpeed();
-    }
+        private Rigidbody2D _playerRigidbody;
+        private PlayerData _playerData;
+        private float moveSpeed;
+        private float jumpForce;
+        private float runSpeed;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_playerStatus.GetPlayerAliveStatus())
+        public PlayerMovement(PlayerData playerData, Rigidbody2D rigidbody)
         {
-            CheckJumpInput();
-            ReducePlayerVelocityByFrame();
+            _playerData = playerData;
+            moveSpeed = playerData.MoveSpeed;
+            jumpForce = playerData.JumpForce;
+            runSpeed = playerData.RunSpeed;
+            _playerRigidbody = rigidbody;
         }
-    }
-    private void CheckJumpInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        public void Move(bool isAlive)
         {
-            _rigidbody.velocity = Vector2.up * PlayerData.JumpForce;
+            if (isAlive)
+            {
+                float inputAxisValue = Input.GetAxis("Horizontal");
+                _playerRigidbody.velocity = new Vector2(inputAxisValue * moveSpeed, _playerRigidbody.velocity.y);
+                RotatePlayer(inputAxisValue);
+                CheckJumpInput();
+                CheckRunInput();
+            }
         }
-    }
-    private void ReducePlayerVelocityByFrame()
-    {
-        if (_rigidbody.velocity.x > 0)
+        private void RotatePlayer(float axisValue)
         {
-            _rigidbody.velocity -= new Vector2(.1f, 0);
+            if(axisValue < 0)
+            {
+                _playerRigidbody.transform.eulerAngles = Vector3.up * 180f;
+            }
+            else if(axisValue > 0)
+            {
+                _playerRigidbody.transform.eulerAngles = Vector3.up * 0;
+            }
         }
-        else if (_rigidbody.velocity.x < 0)
+        private void CheckJumpInput()
         {
-            _rigidbody.velocity -= new Vector2(-.1f, 0);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _playerRigidbody.velocity = Vector2.up * jumpForce;
+            }
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (_playerStatus.GetPlayerAliveStatus())
+        private void CheckRunInput()
         {
-            CheckMovementInput();
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                SetRunSpeed();
+            }
+            else
+            {
+                SetDefaultSpeed();
+            }
         }
-    }
-    private void CheckMovementInput()
-    {
-        if(Input.GetKey(KeyCode.A))
+        private void SetRunSpeed()
         {
-            MovePlayerToLeft();
-            transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
-        }else if (Input.GetKey(KeyCode.D))
-        {
-            MovePlayerToRight();
-            transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+            moveSpeed = runSpeed;
         }
-        CheckRunInput();
-    }
-    private void MovePlayerToLeft() 
-    {
-        _rigidbody.velocity = new Vector2(-moveSpeed, _rigidbody.velocity.y);
-    }
-    private void MovePlayerToRight()
-    {
-        _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
-    }
-    private void CheckRunInput()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
+        private void SetDefaultSpeed()
         {
-            SetRunSpeed();
+            moveSpeed = _playerData.MoveSpeed;
         }
-        else
-        {
-            SetDefaultMoveSpeed();
-        }
-    }
-    private void SetRunSpeed()
-    {
-        moveSpeed = PlayerData.RunSpeed;
-    }
-    private void SetDefaultMoveSpeed()
-    {
-        moveSpeed = PlayerData.MoveSpeed;
-    }
-    /// <summary>
-    /// Returns the player rigidbody velocity in X axis;
-    /// </summary>
-    /// <returns>a float number</returns>
-    public float GetPlayerRigidbodyHorizontalVelocity()
-    {
-        return _rigidbody.velocity.x;
-    }
-    /// <summary>
-    /// Returns the player rigidbody velocity in Y axis;
-    /// </summary>
-    /// <returns>a float number</returns>
-    public float GetPlayerRigidbodyVerticalVelocity()
-    {
-        return _rigidbody.velocity.y;
     }
 }

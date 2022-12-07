@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerData : CharactersStatusBaseData
 {
     [Header("Player Data Setup")]
+    public int HealthPoints;
     public float JumpForce;
     public float RunSpeed;
 }

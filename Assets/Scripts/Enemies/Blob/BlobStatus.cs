@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils.Interfaces.General;
+using Assets.Scripts.Core.Interfaces;
 using DG.Tweening;
 public class BlobStatus : MonoBehaviour, IDamageable
 {
+    public int HealthPoints { get; }
     public bool IsAlive { get; set; }
     public Color damagedColor;
     private Color normalColor = Color.white;
@@ -26,7 +27,6 @@ public class BlobStatus : MonoBehaviour, IDamageable
         if(healthPoints <= 0)
         {
             _animator.SetBool("IsAlive", false);
-            GetComponent<BlobMovement>().enabled = false;
             GetComponent<CapsuleCollider2D>().enabled = false;
             Destroy(gameObject, 5f);
         }
