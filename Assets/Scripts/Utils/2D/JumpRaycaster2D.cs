@@ -13,7 +13,7 @@ namespace Scripts.Utils._2D
         {
             float distoToGround = gameObjectCollider.bounds.extents.y;
             bool isGrounded = Physics2D.Raycast(gameObjectCollider.transform.position, Vector3.down, distoToGround + 0.1f);
-            Debug.DrawRay(gameObjectCollider.transform.position, Vector3.down, Color.red, distoToGround + 0.1f);
+            
             if (isGrounded)
             {
                 return true;

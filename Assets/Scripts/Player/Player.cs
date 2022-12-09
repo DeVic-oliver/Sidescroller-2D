@@ -55,10 +55,6 @@ namespace Assets.Scripts.PlayerComponent
             _playerAnimationManager.WatchLifeAnimation(IsAlive);
         }
 
-        private void FixedUpdate()
-        {
-        }
-
         public void ApplyDamage(int damageValue)
         {
             int damageValueTreated = TreatNegativeNumber.GetTreatedValue(damageValue);
