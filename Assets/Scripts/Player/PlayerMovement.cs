@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Core.Interfaces;
+
 namespace Assets.Scripts.PlayerComponent
 {
-    public class PlayerMovement : IMoveable
+    public class PlayerMovement : IMoveable, IJumpable
     {
+        public bool IsGrounded { get; set; }
+
         private Rigidbody2D _playerRigidbody;
         private PlayerData _playerData;
         private float moveSpeed;
@@ -44,7 +47,7 @@ namespace Assets.Scripts.PlayerComponent
         }
         private void CheckJumpInput()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
             {
                 _playerRigidbody.velocity = Vector2.up * jumpForce;
             }
