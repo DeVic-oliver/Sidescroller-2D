@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Core.Classes.Static;
 using Scripts.Utils._2D;
+
 namespace Assets.Scripts.PlayerComponent
 {
     [RequireComponent(typeof (Rigidbody2D))]
@@ -13,7 +14,7 @@ namespace Assets.Scripts.PlayerComponent
         public int HealthPoints { get; private set; }
         
         [SerializeField] private PlayerData _playerData;
-        private IMoveable _playerMovements;
+
         private PlayerMovement _playerMovements;
         private Rigidbody2D _rigidbody;
         private PlayerAnimationManager _playerAnimationManager;
@@ -44,6 +45,7 @@ namespace Assets.Scripts.PlayerComponent
         {
             IsAlive = LifeStatusParser.GetLifeStatusBasedOnHealth(HealthPoints);
             _playerMovements.Move(IsAlive);
+            _playerMovements.IsGrounded = JumpRaycaster2D.CheckIfIsGrounded(GetComponent<Collider2D>());
             WatchPlayerAnimations();
         }
         private void WatchPlayerAnimations()
