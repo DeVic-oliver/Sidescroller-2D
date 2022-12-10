@@ -9856,6 +9856,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 152857737}
     m_Modifications:
+    - target: {fileID: 249831322, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
+      propertyPath: damagedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249831322, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
+      propertyPath: damagedColor.b
+      value: 0.23113209
+      objectReference: {fileID: 0}
+    - target: {fileID: 249831322, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
+      propertyPath: damagedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 249831322, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
+      propertyPath: damagedColor.r
+      value: 0.36704037
+      objectReference: {fileID: 0}
     - target: {fileID: 2944973745361044811, guid: e0d57717ad485d748986ddb9eba2beb8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9913,6 +9929,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 152857737}
     m_Modifications:
+    - target: {fileID: 425534985, guid: 3de838754c767a446a5473969062a84e, type: 3}
+      propertyPath: damagedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 425534985, guid: 3de838754c767a446a5473969062a84e, type: 3}
+      propertyPath: damagedColor.b
+      value: 0.4575472
+      objectReference: {fileID: 0}
+    - target: {fileID: 425534985, guid: 3de838754c767a446a5473969062a84e, type: 3}
+      propertyPath: damagedColor.g
+      value: 0.4575472
+      objectReference: {fileID: 0}
+    - target: {fileID: 425534985, guid: 3de838754c767a446a5473969062a84e, type: 3}
+      propertyPath: damagedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3090786764695304946, guid: 3de838754c767a446a5473969062a84e, type: 3}
       propertyPath: m_Name
       value: PFB_Enemy_1
