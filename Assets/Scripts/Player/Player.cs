@@ -14,6 +14,12 @@ namespace Assets.Scripts.PlayerComponent
         public int HealthPoints { get; private set; }
         
         [SerializeField] private PlayerData _playerData;
+        [SerializeField] private Animator _animator;
+
+        #region particles
+        //[SerializeField] private ParticleSystem _runDustParticleSystem;
+        //[SerializeField] private ParticleSystem _jumpDustParticleSystem;
+        #endregion
 
         private PlayerMovement _playerMovements;
         private Rigidbody2D _rigidbody;
@@ -32,7 +38,7 @@ namespace Assets.Scripts.PlayerComponent
         private void InitObjects()
         {
             _playerMovements = new PlayerMovement(_playerData, _rigidbody);
-            _playerAnimationManager = new PlayerAnimationManager(GetComponent<Animator>(), _rigidbody);
+            _playerAnimationManager = new PlayerAnimationManager(_animator, _rigidbody);
         }
 
         void Start()
