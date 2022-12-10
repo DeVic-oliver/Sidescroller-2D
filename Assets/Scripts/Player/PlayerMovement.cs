@@ -5,9 +5,10 @@ using Assets.Scripts.Core.Interfaces;
 
 namespace Assets.Scripts.PlayerComponent
 {
-    public class PlayerMovement : IMoveable, IJumpable
+    public class PlayerMovement : IMoveable
     {
         public bool IsGrounded { get; set; }
+
 
         private Rigidbody2D _playerRigidbody;
         private PlayerData _playerData;

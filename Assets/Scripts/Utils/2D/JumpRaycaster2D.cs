@@ -4,17 +4,21 @@ namespace Scripts.Utils._2D
 {
     public static class JumpRaycaster2D
     {
+        private static string _mask = "Ground";
+
         /// <summary>
-        /// Fires a ray from the middle of the gameobject that returns a bool value if collides with another collider;
+        /// Fires a ray from the middle of the gameobject that returns a bool value if collides with another collider from a
+        /// gameobject with layer mask 'Ground' attached;
         /// </summary>
-        /// <param name="gameObjectCollider">The gameobject collider that will be a jump check</param>
+        /// <param name="gameObjectCollider">The gameobject collider that will have the jump check</param>
         /// <returns>True if ray hits another collider | False if not hits another collider</returns>
         public static bool CheckIfIsGrounded(Collider2D gameObjectCollider)
         {
             float distoToGround = gameObjectCollider.bounds.extents.y;
-            bool isGrounded = Physics2D.Raycast(gameObjectCollider.transform.position, Vector3.down, distoToGround + 0.1f);
+            var groundLayerMaks = LayerMask.GetMask(_mask);
+            var hit = Physics2D.Raycast(gameObjectCollider.transform.position, Vector3.down, distoToGround + 0.1f, groundLayerMaks);
             
-            if (isGrounded)
+            if (hit.collider != null)
             {
                 return true;
             }
@@ -23,17 +27,19 @@ namespace Scripts.Utils._2D
         }
 
         /// <summary>
-        /// Fires a ray from the middle of the gameobject that returns a bool value if collides with another collider
+        /// Fires a ray from the middle of the gameobject that returns a bool value if collides with another collider a
+        /// gameobject with layer mask 'Ground' attached;
         /// </summary>
-        /// <param name="gameObjectCollider">The gameobject collider that will be a jump check</param>
+        /// <param name="gameObjectCollider">The gameobject collider that will have the jump check</param>
         /// <param name="spaceBetweenColliderAndGround">A customizable distance between gameobject collider and 'ground' collider. Default space 0.1f</param>
         /// <returns>True if ray hits another collider | False if not hits another collider</returns>
         public static bool CheckIfIsGrounded(Collider2D gameObjectCollider, float spaceBetweenColliderAndGround = 0.1f)
         {
             float distoToGround = gameObjectCollider.bounds.extents.y;
-            bool isGrounded = Physics2D.Raycast(gameObjectCollider.transform.position, Vector3.down, distoToGround + spaceBetweenColliderAndGround);
-
-            if (isGrounded)
+            var groundLayerMaks = LayerMask.GetMask(_mask);
+            var hit = Physics2D.Raycast(gameObjectCollider.transform.position, Vector3.down, distoToGround + spaceBetweenColliderAndGround, groundLayerMaks);
+            
+            if (hit.collider != null)
             {
                 return true;
             }
