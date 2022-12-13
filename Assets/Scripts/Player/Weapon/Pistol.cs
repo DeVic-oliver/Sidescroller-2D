@@ -8,13 +8,22 @@ namespace Assets.Scripts.PlayerComponent
     {
         private Player weaponHolder;
         private WeaponBullet _bullet;
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private Transform weaponPosition;
         [SerializeField] private GameObject bulletPrefab;
 
         private void Start()
         {
+            InitComponentsObject();
+            SetBulletPrefabScript();
+        }
+        private void InitComponentsObject()
+        {
             weaponHolder = GetComponent<Player>();
-            if(bulletPrefab.GetComponent<WeaponBullet>() == null)
+        }
+        private void SetBulletPrefabScript()
+        {
+            if (bulletPrefab.GetComponent<WeaponBullet>() == null)
             {
                 bulletPrefab.AddComponent<WeaponBullet>();
             }
@@ -23,7 +32,7 @@ namespace Assets.Scripts.PlayerComponent
                 _bullet = bulletPrefab.GetComponent<WeaponBullet>();
             }
         }
-    
+
         void Update()
         {
             CheckPlayerLookingSide();
@@ -33,6 +42,7 @@ namespace Assets.Scripts.PlayerComponent
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && weaponHolder.IsAlive)
             {
+                _audioSource.Play();
                 Instantiate(_bullet, weaponPosition.transform.position, weaponPosition.transform.rotation);
             }
         }
