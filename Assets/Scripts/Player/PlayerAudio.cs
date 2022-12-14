@@ -2,19 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class PlayerAudio : MonoBehaviour
 {
-    private AudioSource _audioSource;
-
     public List<AudioClip> _audioClipList;
 
     public List<AudioSource> _audioSourceList;
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
 
     public void PlayAudio()
     {
